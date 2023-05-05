@@ -14,8 +14,10 @@ export default createStore({
   actions: {
     async cargarFechas({commit}) {
       let promesa = await fetch('https://ergast.com/api/f1/current.json')
-      let fechas = await promesa.json();
-      commit('cargarCarreras', fechas.MRData.RaceTable.Races)
+      let datos = await promesa.json();
+      let fechas = await datos.MRData.RaceTable.Races
+      console.log(fechas)
+      commit('cargarCarreras', fechas)
     }
   },
   modules: {
