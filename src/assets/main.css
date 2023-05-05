@@ -1,0 +1,49 @@
+@import "bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+
+/* Colores */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --main-bg: #2c2c2c;
+    --main-bg-dark: #232323;
+    --main-color: #ebebeb;
+    --main-color-dark: #595959;
+    --main-active: #d50000;
+    --main-transition: 500ms;
+
+}
+
+body {
+    background-color: var(--main-bg);
+    color: var(--main-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+a:hover, a:focus, .nav-link:focus, .nav-link:hover {
+    color: var(--main-active);
+}
+
+nav a {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes fadeInTop {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
