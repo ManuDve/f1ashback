@@ -21,6 +21,7 @@
     height: calc(100vh - 56px);
     width: 100%;
     background: url('../assets/portada.jpg') no-repeat fixed center;
+    background-size: cover;
   }
 
   #inicio a {
