@@ -18,7 +18,7 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
-    height: calc(100vh - 56px);
+    height: calc(100vh - var(--nav-height));
     width: 100%;
     background: url('../assets/portada.jpg') no-repeat fixed center;
     background-size: cover;

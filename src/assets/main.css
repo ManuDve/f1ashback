@@ -1,5 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.css";
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,400;1,500;1,900&display=swap');
+
 
 /* Colores */
 
@@ -12,15 +14,21 @@
     --main-bg: #2c2c2c;
     --main-bg-dark: #232323;
     --main-color: #ebebeb;
-    --main-color-dark: #595959;
+    --main-color-dark: #434343;
     --main-active: #d50000;
     --main-transition: 500ms;
-
+    --nav-height: 72px;
+    --secondary-color: #dfc68f;
+    --acc-normal: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill='%23fff'><path fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/></svg>");
+    --acc-active: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23d50000%27><path fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/></svg>");
+    --acc-golden: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23dfc68f%27><path fill-rule=%27evenodd%27 d=%27M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z%27/></svg>");
 }
 
 body {
     background-color: var(--main-bg);
     color: var(--main-color);
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-weight: 500;
 }
 
 a {
@@ -34,9 +42,14 @@ a:hover, a:focus, .nav-link:focus, .nav-link:hover {
 
 nav a {
     font-family: 'Kanit', sans-serif;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Bootstrap */
+
+.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px;
 }
 
 @keyframes fadeInTop {

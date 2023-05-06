@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import * as bootstrap from 'bootstrap'
+// import * as bootstrap from 'bootstrap'
+import 'bootstrap/dist/js/bootstrap.bundle'
 import '@/assets/main.css'
 
 /* Font Awesome */
@@ -14,4 +15,4 @@ library.add(far)
 library.add(fas)
 
 
-createApp(App).use(bootstrap).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

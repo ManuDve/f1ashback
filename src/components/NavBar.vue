@@ -39,6 +39,7 @@ img:hover {
 
 nav {
   background-color: var(--main-bg-dark);
+  padding: 1em 2em;
 }
 
 .nav-link {
