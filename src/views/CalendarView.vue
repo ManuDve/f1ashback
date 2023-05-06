@@ -8,7 +8,7 @@
     <div class="accordion accordion-flush"  id="accordion">
       <div v-for="carrera in carreras" :key="carrera.id" class="accordion-item" :class="compararFechas(hoyDia, carrera.date) ? 'tachado' : 'normal' ">
         <h2 class="accordion-header" >
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          <button class="accordion-button collapsed px-0 px-sm-5" type="button" data-bs-toggle="collapse"
             :data-bs-target="'#n' + carrera.round" aria-expanded="false" :aria-controls="'n' + carrera.round">
             <div class="dflex"> 
               <div>{{ carrera.raceName }} <span class="alerta">NEXT</span></div>

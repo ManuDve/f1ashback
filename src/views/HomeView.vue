@@ -1,13 +1,13 @@
 <template>
   <main id="inicio">
-      <a href="/calendario">
+    <router-link to="/calendario">
         <font-awesome-icon :icon="['fas', 'calendar-days']" />
         Calendario
-      </a>
-      <a href="/clasificaciones">
+    </router-link>
+    <router-link to="/clasificaciones">
         <font-awesome-icon :icon="['fas', 'ranking-star']" />
         Clasificaciones
-      </a>
+    </router-link>
   </main>
 </template>
 
