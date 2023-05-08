@@ -14,10 +14,11 @@ export default {
     NavBar
   },
   computed: {
-    ...mapActions(['cargarFechas']),
+    ...mapActions(['cargarFechas', 'cargarStandings']),
   },
   async created() {
     await this.cargarFechas;
+    await this.cargarStandings;
   }
 }
 </script>
