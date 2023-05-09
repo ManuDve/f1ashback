@@ -17,6 +17,9 @@
         <li class="nav-item">
           <RouterLink class="nav-link" to="/clasificaciones">Clasificaciones</RouterLink>
         </li>
+        <li class="nav-item">
+          <RouterLink class="nav-link" to="/notificacion">Notificación</RouterLink>
+        </li>
       </ul>
     </div>
   </div>

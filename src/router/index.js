@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ClasificationView from '../views/ClasificationView.vue'
 import CalendarView from '../views/CalendarView.vue'
+import FormularioView from '../views/FormularioView.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/clasificaciones',
     name: 'clasificaciones',
     component: ClasificationView
+  },
+  {
+    path: '/notificacion',
+    name: 'notificacion',
+    component: FormularioView
   }
 ]
 

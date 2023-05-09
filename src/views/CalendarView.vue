@@ -11,7 +11,7 @@
           <button class="accordion-button collapsed px-0 px-sm-5" type="button" data-bs-toggle="collapse"
             :data-bs-target="'#n' + carrera.round" aria-expanded="false" :aria-controls="'n' + carrera.round">
             <div class="dflex"> 
-              <div>{{ carrera.raceName }} <span class="alerta">NEXT</span></div>
+              <div>{{ carrera.raceName }} <span v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
               <div>{{ cambiarFecha(carrera.date) }}</div>
             </div>
           </button>
@@ -25,6 +25,12 @@
       </div>
     </div>
   </section>
+  <div v-if="carreraSiguiente">
+    <p> Ronda: {{ carreraSiguiente.round}}</p>
+    <p> Circuito: {{ carreraSiguiente.Races[0].raceName}}</p>
+    <p> Fecha: {{ cambiarFecha(carreraSiguiente.Races[0].date)}}</p>
+    <p> Hora: {{ carreraSiguiente.Races[0].time}}</p>
+  </div>
 </template>
 
 <script>
@@ -35,8 +41,6 @@ export default {
   data() {
     return {
       hoyDia: null,
-      esSiguiente: false,
-      numeroCarrera: 0
     }
   },
   methods: {
@@ -46,12 +50,22 @@ export default {
     compararFechas(actual, proxima) {
       let fechaActual = actual.split("/").join("");
       let fechaProxima = proxima.split("-").join("")
-      console.log()
       return fechaActual > fechaProxima
     },
+/*     siguienteCarrera() {
+      if (this.carreras && this.hoyDia) {
+        let fechaActual = this.hoyDia.split("/").join("");
+        this.carreras.forEach(element => {
+        let fechaProxima = element.date.split("-").join("")
+        if (fechaActual > fechaProxima) {
+          return fechaProxima
+        }
+      });
+      } 
+    } */
   },
   computed: {
-    ...mapState(['carreras']),
+    ...mapState(['carreras', 'carreraSiguiente']),
   },
   created() {
     let diaActual = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
@@ -105,7 +119,7 @@ export default {
   color: var(--secondary-color);
 }
 
-.tachado + .normal > h2 > button > .dflex > div > span{
+.alerta{
   display: inline;
   font-weight: 900;
   text-transform: uppercase;
@@ -149,14 +163,4 @@ export default {
   letter-spacing: 0.3px;
   font-weight: 500;
 }
-
-
-.alerta {
-  display: none;
-}
-
-
-
-
-
 </style>

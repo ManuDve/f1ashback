@@ -3,7 +3,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     carreras: null,
-    standings: null
+    standings: null,
+    carreraSiguiente: null,
   },
   getters: {
   },
@@ -13,7 +14,10 @@ export default createStore({
     },
     cargarStandings(state, payload) {
       state.standings = payload
-    }
+    },
+    cargarCarreraSiguiente(state, payload) {
+      state.carreraSiguiente = payload
+    },
   },
   actions: {
     async cargarFechas({commit}) {
@@ -29,6 +33,13 @@ export default createStore({
       let stands = await datos.MRData.StandingsTable.StandingsLists[0]
       console.log(stands)
       commit('cargarStandings', stands)
+    },
+    async cargarCarreraSiguiente({commit}){
+      let promesa = await fetch ('https://ergast.com/api/f1/current/next.json')
+      let datos = await promesa.json();
+      let siguiente = await datos.MRData.RaceTable
+      console.log(siguiente)
+      commit('cargarCarreraSiguiente', siguiente)
     }
   },
   modules: {
