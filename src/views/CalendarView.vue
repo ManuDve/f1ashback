@@ -25,12 +25,6 @@
       </div>
     </div>
   </section>
-  <div v-if="carreraSiguiente">
-    <p> Ronda: {{ carreraSiguiente.round}}</p>
-    <p> Circuito: {{ carreraSiguiente.Races[0].raceName}}</p>
-    <p> Fecha: {{ cambiarFecha(carreraSiguiente.Races[0].date)}}</p>
-    <p> Hora: {{ carreraSiguiente.Races[0].time}}</p>
-  </div>
 </template>
 
 <script>

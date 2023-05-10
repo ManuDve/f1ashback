@@ -52,6 +52,11 @@ nav a {
     max-width: 1140px;
 }
 
+.form-control, .form-control:focus {
+    background-color: var(--main-bg);
+    color: var(--main-color);
+    border: 1px solid var(--main-color-dark)
+}
 @keyframes fadeInTop {
     0% {
         opacity: 0;

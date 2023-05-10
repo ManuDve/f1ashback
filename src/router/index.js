@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ClasificationView from '../views/ClasificationView.vue'
 import CalendarView from '../views/CalendarView.vue'
 import FormularioView from '../views/FormularioView.vue'
+import ErrorView from '../views/ErrorView.vue'
 
 const routes = [
   {
@@ -17,13 +18,26 @@ const routes = [
   },
   {
     path: '/clasificaciones',
-    name: 'clasificaciones',
-    component: ClasificationView
+    redirect: '/clasificaciones/2023',
+    children: [
+      {
+        path: '/clasificaciones/:year',
+        name: 'clasificaciones',
+        component: ClasificationView,
+        props: true
+      },
+    ]
   },
+
   {
     path: '/notificacion',
     name: 'notificacion',
     component: FormularioView
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Error 404',
+    component: ErrorView
   }
 ]
 

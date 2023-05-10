@@ -5,6 +5,7 @@ export default createStore({
     carreras: null,
     standings: null,
     carreraSiguiente: null,
+    ano: null,
   },
   getters: {
   },
@@ -18,28 +19,38 @@ export default createStore({
     cargarCarreraSiguiente(state, payload) {
       state.carreraSiguiente = payload
     },
+    cargarAno(state, payload) {
+      state.ano = payload;
+    }
   },
   actions: {
     async cargarFechas({commit}) {
       let promesa = await fetch('https://ergast.com/api/f1/current.json')
       let datos = await promesa.json();
       let fechas = await datos.MRData.RaceTable.Races
-      console.log(fechas)
       commit('cargarCarreras', fechas)
     },
     async cargarStandings({commit}){
       let promesa = await fetch ('https://ergast.com/api/f1/2023/driverStandings.json')
       let datos = await promesa.json();
       let stands = await datos.MRData.StandingsTable.StandingsLists[0]
-      console.log(stands)
       commit('cargarStandings', stands)
     },
     async cargarCarreraSiguiente({commit}){
       let promesa = await fetch ('https://ergast.com/api/f1/current/next.json')
       let datos = await promesa.json();
       let siguiente = await datos.MRData.RaceTable
-      console.log(siguiente)
       commit('cargarCarreraSiguiente', siguiente)
+    },
+    async cargarAno({commit}, payload){
+      let base =  'http://ergast.com/api/f1/'
+      let year = payload;
+      let url  = base + year + '/driverStandings.json'
+      let promesa = await fetch(url)
+      let datos = await promesa.json()
+      let standings = await datos.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+      console.log(standings)
+      commit('cargarAno', standings)
     }
   },
   modules: {

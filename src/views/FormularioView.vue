@@ -1,14 +1,23 @@
 <template>
-    <form @submit.prevent="enviarMail()">
-        <input v-model="nombreDestinatario" type="text" placeholder="tu nombre">
-        <input v-model="emailDestinatario" type="email" name="" id="" placeholder="tuemail">
-        <button>Enviar</button>
-    </form>
-    <div v-if="carreraSiguiente" id="laCarrera">
-        <p> Ronda: {{ carreraSiguiente.round }}</p>
-        <p> Circuito: {{ carreraSiguiente.Races[0].raceName }}</p>
-        <p> Fecha: {{ carreraSiguiente.Races[0].date }}</p>
-        <p> Hora: {{ carreraSiguiente.Races[0].time }}</p>
+    <main class="container">
+        <section class="row m-5">
+            <h1 class="mb-4 text-center">¡Notifícame la próxima carrera!</h1>
+            <form @submit.prevent="enviarMail()">
+                <input v-model="nombreDestinatario" class="form-control mb-3" type="text" placeholder="Ingresa tu Nombre">
+                <input v-model="emailDestinatario" class="form-control mb-3" type="email" name="" id="" placeholder="Ingresa tu Email">
+                <button class="btn btn-primary">Enviar</button>
+            </form>
+
+        </section>
+    </main>
+    <!-- Datos a enviar -->
+    <div v-show="false">
+        <div id="laCarrera">
+                <p> Ronda: {{ carreraSiguiente.round }}</p>
+                <p> Circuito: {{ carreraSiguiente.Races[0].raceName }}</p>
+                <p> Fecha: {{ carreraSiguiente.Races[0].date }}</p>
+                <p> Hora: {{ carreraSiguiente.Races[0].time }}</p>
+            </div>
     </div>
 </template>
 
@@ -37,7 +46,7 @@ export default {
                     my_html: await document.getElementById('laCarrera').innerHTML
                 }
                 await emailjs.send(serviceID, templateID, templateParams, publicKey);
-                await alert("Se envió correctamente")
+                await alert(`Se envió correctamente al correo ${this.emailDestinatario}`)
             } catch (error) {
                 console.log(error)
             }
@@ -49,3 +58,4 @@ export default {
 
 }
 </script>
+
