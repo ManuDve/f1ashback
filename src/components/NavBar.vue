@@ -18,7 +18,10 @@
           <RouterLink class="nav-link" to="/clasificaciones">Clasificaciones</RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/notificacion">Notificación</RouterLink>
+          <RouterLink class="nav-link" to="/notificacion">
+            <font-awesome-icon class="icon d-none d-md-inline" :icon="['fas', 'bell']" />
+            <div class="d-block  d-md-none">Notificación</div>
+          </RouterLink>
         </li>
       </ul>
     </div>
@@ -29,6 +32,10 @@
 
 
 <style scoped>
+
+.icon {
+  font-size: 1.2em;
+}
 
 img {
   min-height: 18px;
