@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-6">
                 <h1 class="text-center">Error 404</h1>
-            <router-link class="btn" to="/">Volver al Inicio</router-link>
+            <a class="btn" @click="$router.go(-1)">Regresar</a>
             </div>
             
         </div>

@@ -31,7 +31,6 @@ export default {
     await this.cargarFechas;
     await this.cargarStandings;
     await this.cargarCarreraSiguiente
-    await this.cargarAno('2023');
   }
 }
 </script>

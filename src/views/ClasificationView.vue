@@ -2,11 +2,11 @@
     <section class="container table-responsive my-3">
         <div class="row">
             <div class="col">
-                <h1 class="text-center mb-3">Temporada {{fechaCorrecta}}</h1>
+                <h1 class="text-center mb-3">Temporada {{ year }}</h1>
 
-                <form class="input-group flex-nowrap my-3" @submit.prevent="navegar(fecha)" >
+                <form class="input-group flex-nowrap my-3" @submit.prevent="navegar(inputFecha)" >
                     <span class="input-group-text" id="addon-wrapping">Ingresa el Año</span>
-                    <input type="numer" class="form-control" placeholder="2023" aria-label="año" aria-describedby="addon-wrapping" min="1952" max="2023" v-model="fecha">
+                    <input type="numer" class="form-control" placeholder="2023" aria-label="año" aria-describedby="addon-wrapping" min="1952" max="2023" v-model="inputFecha">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2" >Buscar</button>
                 </form>
             </div>
@@ -47,37 +47,46 @@ import {mapState, mapActions} from 'vuex'
 
 export default {
     props: {
-        year: { type: String, default: '2023' }
+        year: { type: String}
     },
     data() {
         return {
-            fecha: null,
-            fechaCorrecta: 2023
-        }
-    },
-    methods:{
-        ...mapActions(['cargarAno']),
-        navegar() {
-            const regEx = /[a-zA-Z]/
-            if (this.fecha > 2023 || this.fecha < 1951 || regEx.test(this.fecha)) {
-                alert('Fecha inválida')
-                this.fecha = this.fechaCorrecta;
-                this.$router.push('/clasificaciones/' + this.fecha);
-            } else {
-                this.fechaCorrecta = this.fecha
-                this.$router.push('/clasificaciones/' + this.fecha);
-            }
+            inputFecha: this.year,
+            ultimaFechaCorrecta: '2023'
         }
     },
     computed: {
         ...mapState(['ano']),
     },
-    mounted() {
-        this.fecha = this.year
-        this.navegar(this.year)
+    methods: {
+        ...mapActions(['cargarAno']),
+        navegar(input) {
+            let regEx = /[a-zA-Z]/
+            if (input > 2023 || input < 1950 || regEx.test(input) ) {
+                alert('Fecha Incorrecta')
+                this.inputFecha = this.ultimaFechaCorrecta
+                this.$router.push(this.inputFecha)
+                this.cargarAno(this.inputFecha)
+            } else {
+                this.ultimaFechaCorrecta = this.inputFecha;
+                this.$router.push(this.inputFecha)
+                this.cargarAno(this.inputFecha)
+            }
+            
+        }
+    },
+    beforeMount() {
+        let regEx = /[a-zA-Z]/
+        /* Valida la url */
+        if (this.year > 2023 || this.year < 1950 || regEx.test(this.year)) {
+            alert('URL de Fecha Incorrecta')
+            this.$router.push('2023')
+            this.inputFecha = '2023'
+            this.cargarAno(this.inputFecha)
+        } else {
+            this.cargarAno(this.year)
+        }
     }
-
-    
 }
 
 </script>

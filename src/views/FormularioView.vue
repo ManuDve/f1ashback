@@ -5,7 +5,7 @@
             <form @submit.prevent="enviarMail()">
                 <input v-model="nombreDestinatario" class="form-control mb-3" type="text" placeholder="Ingresa tu Nombre">
                 <input v-model="emailDestinatario" class="form-control mb-3" type="email" name="" id="" placeholder="Ingresa tu Email">
-                <button class="btn btn-primary">Enviar</button>
+                <button class="btn">Enviar</button>
             </form>
         </section>
     </main>
@@ -54,4 +54,10 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.btn {
+    background-color: var(--secondary-color);
+}
+</style>
 
