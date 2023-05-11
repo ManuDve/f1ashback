@@ -36,13 +36,23 @@
     letter-spacing: 2px;
     width: 80%;
     background-color: rgba(0, 0, 0, 0.303);
-    animation: fadeInTop calc(var(--main-transition)*2) var(--main-transition) backwards;
     cursor: pointer;
     transition: var(--main-transition)
   }
 
   #inicio a:hover {
-    border: 1px solid var(--main-active);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+  
+   @media screen and (min-width: 768px) {
+    #inicio {
+    display: flex;
+    flex-direction: row;
+    }
+    a {
+      max-width: 320px;
+    }
   }
 
 </style>

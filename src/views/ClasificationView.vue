@@ -2,15 +2,20 @@
     <section class="container table-responsive my-3">
         <div class="row">
             <div class="col">
-                <h1 class="text-center mb-3">Temporada {{year < 1951 || year > 2023 ? navegar() : year}}</h1>
+                <h1 class="text-center mb-3">Temporada {{fechaCorrecta}}</h1>
 
                 <form class="input-group flex-nowrap my-3" @submit.prevent="navegar(fecha)" >
                     <span class="input-group-text" id="addon-wrapping">Ingresa el Año</span>
                     <input type="numer" class="form-control" placeholder="2023" aria-label="año" aria-describedby="addon-wrapping" min="1952" max="2023" v-model="fecha">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" >Buscar</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" >Buscar</button>
                 </form>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+      <div v-if="!ano" class="spinner-border" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
         <div class="row">
             <div class="col">
                 <table v-if="ano" class="table text-center">
@@ -23,7 +28,7 @@
                     </thead>
                     <tbody v-for="piloto in ano" :key="'a' + piloto.position">
                         <td>{{ piloto.position }}</td>
-                        <td>{{ piloto.Driver.givenName }} {{ piloto.Driver.familyName }}</td>
+                        <td><font-awesome-icon v-if="piloto.position == 1 && year != 2023" :icon="['fas', 'crown']" /> {{ piloto.Driver.givenName }} {{ piloto.Driver.familyName }}</td>
                         <td>{{ piloto.points }}</td>
                         <td>{{ piloto.wins }}</td>
                         <td>{{ piloto.Constructors[0].name }}</td>
@@ -53,7 +58,8 @@ export default {
     methods:{
         ...mapActions(['cargarAno']),
         navegar() {
-            if (this.fecha > 2023 || this.fecha < 1951) {
+            const regEx = /[a-zA-Z]/
+            if (this.fecha > 2023 || this.fecha < 1951 || regEx.test(this.fecha)) {
                 alert('Fecha inválida')
                 this.fecha = this.fechaCorrecta;
                 this.$router.push('/clasificaciones/' + this.fecha);
@@ -64,15 +70,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(['ano'])
-    },
-    watch: {
-        year() {
-            this.cargarAno(this.year);
-        }
+        ...mapState(['ano']),
     },
     mounted() {
-        this.cargarAno(this.year);
+        this.fecha = this.year
+        this.navegar(this.year)
     }
 
     
@@ -112,8 +114,17 @@ th {
     border: 1px solid var(--main-color-dark);
 }
 
-@media screen and (min-width: 576px) {
+.form-control:focus {
+    outline: 0;
+    box-shadow: none;
+}
 
+.svg-inline--fa {
+    vertical-align: bottom;
+    color: var(--secondary-color);
+}
+
+@media screen and (min-width: 576px) {
     td,
     th {
         padding: 1em;

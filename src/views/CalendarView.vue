@@ -1,8 +1,8 @@
 <template>
-  <section class="container">
+  <main class="container">
     <div class="d-flex justify-content-center">
       <div v-if="!carreras" class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+        <span class="visually-hidden">Cargando...</span>
       </div>
     </div>
     <div class="accordion accordion-flush"  id="accordion">
@@ -11,20 +11,66 @@
           <button class="accordion-button collapsed px-0 px-sm-5" type="button" data-bs-toggle="collapse"
             :data-bs-target="'#n' + carrera.round" aria-expanded="false" :aria-controls="'n' + carrera.round">
             <div class="dflex"> 
-              <div>{{ carrera.raceName }} <span v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
+              <div class="nombre-carrera">{{ carrera.raceName }} <span v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
               <div>{{ cambiarFecha(carrera.date) }}</div>
             </div>
           </button>
         </h2>
         <div :id="'n' + carrera.round" class="accordion-collapse collapse" data-bs-parent="#accordion">
           <div class="accordion-body">
-            <p>Horario: {{ carrera.time }}</p>
-            <p>País: {{ carrera.Circuit.Location.country }}</p>
+
+            <div class="accordion-data">
+              <div>Primera Práctica </div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.FirstPractice.time) }}</div>
+                <div>{{ fechaNominal(carrera.FirstPractice.date) }}</div>
+              </div>
+            </div>
+
+            <div class="accordion-data">
+              <div>Segunda Práctica </div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.SecondPractice.time) }}</div>
+                <div>{{ fechaNominal(carrera.SecondPractice.date) }}</div>
+              </div>
+            </div>
+            <div class="accordion-data" v-if="carrera.ThirdPractice">
+              <div>Tercera Práctica </div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.ThirdPractice.time) }}</div>
+                <div>{{ fechaNominal(carrera.ThirdPractice.date) }}</div>
+              </div>
+            </div>
+
+            <div class="accordion-data">
+              <div>Clasificación </div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.Qualifying.time) }}</div>
+                <div>{{ fechaNominal(carrera.Qualifying.date) }}</div>
+              </div>
+            </div>
+
+            <div class="accordion-data" v-if="carrera.Sprint">
+              <div>Sprint </div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.Sprint.time) }}</div>
+                <div>{{ fechaNominal(carrera.Sprint.date) }}</div>
+              </div>
+            </div>
+
+            <div class="accordion-data gp">
+              <div>Gran Premio</div>
+              <div class="hora">
+                <div>{{ cambiarHora(carrera.time) }}</div>
+                <div>{{ fechaNominal(carrera.date) }}</div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 </template>
 
 <script>
@@ -41,25 +87,35 @@ export default {
     cambiarFecha(fecha) {
       return fecha.split('-').reverse().join("/")
     },
+    fechaNominal(fecha) {
+      let arr = fecha.split('-').reverse()
+      const meses = {
+        '01': 'Enero',
+        '02': 'Febrero',
+        '03': 'Marzo',
+        '04': 'Abril',
+        '05': 'Mayo',
+        '06': 'Junio',
+        '07': 'Julio',
+        '08': 'Agosto',
+        '09': 'Septiembre',
+        '10': 'Octubre',
+        '11': 'Noviembre',
+        '12': 'Diciembre',
+      }
+      return arr[0] + ' de ' +  meses[arr[1]]
+    },
     compararFechas(actual, proxima) {
       let fechaActual = actual.split("/").join("");
       let fechaProxima = proxima.split("-").join("")
       return fechaActual > fechaProxima
     },
-/*     siguienteCarrera() {
-      if (this.carreras && this.hoyDia) {
-        let fechaActual = this.hoyDia.split("/").join("");
-        this.carreras.forEach(element => {
-        let fechaProxima = element.date.split("-").join("")
-        if (fechaActual > fechaProxima) {
-          return fechaProxima
-        }
-      });
-      } 
-    } */
+    cambiarHora(hora) {
+      return hora.slice(0,5)
+    }
   },
   computed: {
-    ...mapState(['carreras', 'carreraSiguiente']),
+    ...mapState(['carreras', 'carreraSiguiente'])
   },
   created() {
     let diaActual = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
@@ -70,6 +126,10 @@ export default {
 </script>
 
 <style scoped>
+
+main {
+  margin-bottom: 2em;
+}
 .dflex {
   width: 100%;
   display: flex;
@@ -89,7 +149,6 @@ export default {
 
 .accordion-item {
   border: none;
-
 }
 
 .accordion-button,
@@ -113,18 +172,25 @@ export default {
   color: var(--secondary-color);
 }
 
+.nombre-carrera {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 1em;
+  flex-wrap: wrap;
+}
+
 .alerta{
   display: inline;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 0.6rem;
-  margin-left: 1em;
   border-radius: 4px;
   text-align: center;
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
-  padding: 3px 10px;
+  padding: 6px 10px 3px 10px;
 }
 
 .tachado + .normal > h2 > .accordion-button:not(.collapsed)::after {
@@ -156,5 +222,26 @@ export default {
   font-style: italic;
   letter-spacing: 0.3px;
   font-weight: 500;
+}
+
+.accordion-body {
+  border-bottom: 1px solid var(--main-color-dark);
+}
+.accordion-data {
+  color: var(--main-color-mid);
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hora {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  min-width: 30%;
+}
+.gp {
+  color: var(--secondary-color);
 }
 </style>

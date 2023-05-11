@@ -49,7 +49,6 @@ export default createStore({
       let promesa = await fetch(url)
       let datos = await promesa.json()
       let standings = await datos.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-      console.log(standings)
       commit('cargarAno', standings)
     }
   },

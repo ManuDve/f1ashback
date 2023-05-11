@@ -7,18 +7,8 @@
                 <input v-model="emailDestinatario" class="form-control mb-3" type="email" name="" id="" placeholder="Ingresa tu Email">
                 <button class="btn btn-primary">Enviar</button>
             </form>
-
         </section>
     </main>
-    <!-- Datos a enviar -->
-    <div v-show="false">
-        <div id="laCarrera">
-                <p> Ronda: {{ carreraSiguiente.round }}</p>
-                <p> Circuito: {{ carreraSiguiente.Races[0].raceName }}</p>
-                <p> Fecha: {{ carreraSiguiente.Races[0].date }}</p>
-                <p> Hora: {{ carreraSiguiente.Races[0].time }}</p>
-            </div>
-    </div>
 </template>
 
 <script>
@@ -39,11 +29,17 @@ export default {
                 const serviceID = "service_kirku2h";
                 const templateID = "template_e8e2bhj";
                 const publicKey = "e18cPUWULRRLR1iJI";
+                let html = `
+                <p> Ronda: ${this.carreraSiguiente.round}</p>
+                <p> Circuito: ${this.carreraSiguiente.Races[0].raceName}</p>
+                <p> Fecha: ${this.carreraSiguiente.Races[0].date}</p>
+                <p> Hora: ${this.carreraSiguiente.Races[0].time}</p>
+                `
                 let templateParams = {
                     to_name: this.nombreDestinatario,
                     from_name: this.remitente,
                     to_email: this.emailDestinatario,
-                    my_html: await document.getElementById('laCarrera').innerHTML
+                    my_html: html
                 }
                 await emailjs.send(serviceID, templateID, templateParams, publicKey);
                 await alert(`Se envió correctamente al correo ${this.emailDestinatario}`)

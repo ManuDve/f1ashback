@@ -15,6 +15,7 @@
     --main-bg-dark: #232323;
     --main-color: #ebebeb;
     --main-color-dark: #434343;
+    --main-color-mid: #b4b4b4;
     --main-active: #d50000;
     --main-transition: 500ms;
     --nav-height: 72px;
@@ -44,6 +45,10 @@ nav a {
     font-family: 'Kanit', sans-serif;
     font-weight: 300;
     letter-spacing: 1px;
+}
+
+main {
+    min-height: 80vh;
 }
 
 /* Bootstrap */
