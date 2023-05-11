@@ -4,7 +4,7 @@
             <div class="col">
                 <h1 class="text-center mb-3">Temporada {{year < 1951 || year > 2023 ? navegar() : year}}</h1>
 
-                <form class="input-group flex-nowrap my-3" @submit.prevent="navegar(year)" >
+                <form class="input-group flex-nowrap my-3" @submit.prevent="navegar(fecha)" >
                     <span class="input-group-text" id="addon-wrapping">Ingresa el Año</span>
                     <input type="numer" class="form-control" placeholder="2023" aria-label="año" aria-describedby="addon-wrapping" min="1952" max="2023" v-model="fecha">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon2" >Buscar</button>
@@ -46,7 +46,8 @@ export default {
     },
     data() {
         return {
-            fecha: null
+            fecha: null,
+            fechaCorrecta: 2023
         }
     },
     methods:{
@@ -54,9 +55,10 @@ export default {
         navegar() {
             if (this.fecha > 2023 || this.fecha < 1951) {
                 alert('Fecha inválida')
-                this.fecha = 2023;
+                this.fecha = this.fechaCorrecta;
                 this.$router.push('/clasificaciones/' + this.fecha);
             } else {
+                this.fechaCorrecta = this.fecha
                 this.$router.push('/clasificaciones/' + this.fecha);
             }
         }
