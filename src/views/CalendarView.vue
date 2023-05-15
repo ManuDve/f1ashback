@@ -22,7 +22,8 @@
           <div class="accordion-body">
             <span class="pais">
               <img class="flag" :src="mostrarPais(carrera.Circuit.Location.country)"> 
-              {{ carrera.Circuit.Location.country }}
+              {{ carrera.Circuit.Location.locality }}, 
+              {{ carrera.Circuit.Location.country }} 
             </span>
             <div class="accordion-data">
               <div>Primera Práctica </div>
@@ -99,6 +100,8 @@ export default {
         return country.searchFlag('United States')[0].flag
       } else if (nombre == 'UAE') {
         return country.searchFlag('Arab Emirates')[0].flag
+      } else if(nombre == 'UK') {
+        return country.searchFlag('United Kingdom')[0].flag
       } else if (country.searchFlag(nombre)) {
         return country.searchFlag(nombre)[0].flag
       } else {
