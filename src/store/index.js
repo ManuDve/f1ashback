@@ -43,7 +43,7 @@ export default createStore({
       commit('cargarCarreraSiguiente', siguiente)
     },
     async cargarAno({commit}, payload){
-      let base =  'http://ergast.com/api/f1/'
+      let base =  'https://ergast.com/api/f1/'
       let year = payload;
       let url  = base + year + '/driverStandings.json'
       let promesa = await fetch(url)

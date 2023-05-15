@@ -36,9 +36,16 @@ const routes = [
   },
   {
     path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    name: 'Redirect Error 404',
+    component: ErrorView
+  },
+  {
+    path: '/404',
     name: 'Error 404',
     component: ErrorView
-  }
+  },
+
 ]
 
 const router = createRouter({
