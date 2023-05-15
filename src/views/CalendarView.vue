@@ -5,20 +5,25 @@
         <span class="visually-hidden">Cargando...</span>
       </div>
     </div>
-    <div class="accordion accordion-flush"  id="accordion">
-      <div v-for="carrera in carreras" :key="carrera.id" class="accordion-item" :class="compararFechas(hoyDia, carrera.date) ? 'tachado' : 'normal' ">
-        <h2 class="accordion-header" >
+    <div class="accordion accordion-flush" id="accordion">
+      <div v-for="carrera in carreras" :key="carrera.id" class="accordion-item"
+        :class="compararFechas(hoyDia, carrera.date) ? 'tachado' : 'normal'">
+        <h2 class="accordion-header">
           <button class="accordion-button collapsed px-0 px-sm-5" type="button" data-bs-toggle="collapse"
             :data-bs-target="'#n' + carrera.round" aria-expanded="false" :aria-controls="'n' + carrera.round">
-            <div class="dflex"> 
-              <div class="nombre-carrera">{{ carrera.raceName }} <span v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
+            <div class="dflex">
+              <div class="nombre-carrera">{{ carrera.raceName }} <span
+                  v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
               <div>{{ cambiarFecha(carrera.date) }}</div>
             </div>
           </button>
         </h2>
         <div :id="'n' + carrera.round" class="accordion-collapse collapse" data-bs-parent="#accordion">
           <div class="accordion-body">
-
+            <span class="pais">
+              <img class="flag" :src="mostrarPais(carrera.Circuit.Location.country)"> 
+              {{ carrera.Circuit.Location.country }}
+            </span>
             <div class="accordion-data">
               <div>Primera Práctica </div>
               <div class="hora">
@@ -65,7 +70,7 @@
                 <div>{{ fechaNominal(carrera.date) }}</div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -76,6 +81,8 @@
 <script>
 
 import { mapState } from 'vuex'
+import country from "all-country-data";
+
 
 export default {
   data() {
@@ -86,6 +93,18 @@ export default {
   methods: {
     cambiarFecha(fecha) {
       return fecha.split('-').reverse().join("/")
+    },
+    mostrarPais(nombre) {
+      if (nombre == 'USA') {
+        return country.searchFlag('United States')[0].flag
+      } else if (nombre == 'UAE') {
+        return country.searchFlag('Arab Emirates')[0].flag
+      } else if (country.searchFlag(nombre)) {
+        return country.searchFlag(nombre)[0].flag
+      } else {
+        return ''
+      }
+      
     },
     fechaNominal(fecha) {
       let arr = fecha.split('-').reverse()
@@ -103,7 +122,7 @@ export default {
         '11': 'Noviembre',
         '12': 'Diciembre',
       }
-      return arr[0] + ' de ' +  meses[arr[1]]
+      return arr[0] + ' de ' + meses[arr[1]]
     },
     compararFechas(actual, proxima) {
       let fechaActual = actual.split("/").join("");
@@ -111,11 +130,11 @@ export default {
       return fechaActual > fechaProxima
     },
     cambiarHora(hora) {
-      return hora.slice(0,5)
+      return hora.slice(0, 5)
     }
   },
   computed: {
-    ...mapState(['carreras', 'carreraSiguiente'])
+    ...mapState(['carreras', 'carreraSiguiente']),
   },
   created() {
     let diaActual = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
@@ -126,10 +145,10 @@ export default {
 </script>
 
 <style scoped>
-
 main {
   margin-bottom: 2em;
 }
+
 .dflex {
   width: 100%;
   display: flex;
@@ -159,16 +178,16 @@ main {
   border-bottom: 1px solid var(--main-color-dark);
 }
 
-/* Ya fue*/ 
+/* Ya fue*/
 
-.tachado  > h2 > button > .dflex {
+.tachado>h2>button>.dflex {
   text-decoration-line: line-through;
   color: var(--main-color-dark)
 }
 
-/* Carrera siguiente */ 
+/* Carrera siguiente */
 
-.tachado + .normal > h2 > button > .dflex > div {
+.tachado+.normal>h2>button>.dflex>div {
   color: var(--secondary-color);
 }
 
@@ -180,7 +199,7 @@ main {
   flex-wrap: wrap;
 }
 
-.alerta{
+.alerta {
   display: inline;
   font-weight: 900;
   text-transform: uppercase;
@@ -193,7 +212,7 @@ main {
   padding: 6px 10px 3px 10px;
 }
 
-.tachado + .normal > h2 > .accordion-button:not(.collapsed)::after {
+.tachado+.normal>h2>.accordion-button:not(.collapsed)::after {
   --bs-accordion-btn-active-icon: var(--acc-golden);
 }
 
@@ -227,6 +246,7 @@ main {
 .accordion-body {
   border-bottom: 1px solid var(--main-color-dark);
 }
+
 .accordion-data {
   color: var(--main-color-mid);
   font-weight: 300;
@@ -241,7 +261,24 @@ main {
   gap: 1em;
   min-width: 30%;
 }
+
 .gp {
   color: var(--secondary-color);
 }
+
+/*  Banderas */
+
+.pais {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .5em;
+  margin-bottom: 1em;
+}
+.flag {
+  max-width: 20px;
+}
+
 </style>
+
+
