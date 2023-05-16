@@ -20,7 +20,7 @@ npm run serve
 
 
 ### 1.Maquetación con HTML y CSS: Uso de Bootstrap y etiquetas semánticas
-> Ejemplo: src/view/ErrorView.vue (línea 1)
+> Ejemplo de HTML Semántico y Bootstrap en src/view/ErrorView.vue (línea 1)
 ```html
 <template>
     <main class="container mt-5">
@@ -34,6 +34,30 @@ npm run serve
         </div>
     </main>
 </template>
+```
+> Responsividad por CSS en src/view/HomeView.vue (línea 15 y 48)
+```css
+ #inicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    height: calc(100vh - var(--nav-height));
+    width: 100%;
+    background: url('../assets/portada.jpg') no-repeat fixed center;
+    background-size: cover;
+  }
+...
+@media screen and (min-width: 768px) {
+    #inicio {
+    display: flex;
+    flex-direction: row;
+    }
+    a {
+      max-width: 320px;
+    }
+  }
 ```
 
 ### 2. Uso de Componenetes Vue
