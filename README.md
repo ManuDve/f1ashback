@@ -12,11 +12,11 @@ npm run serve
 
 ## Características:
 
-* 1. Maquetación con HTML y CSS
-* 2. Uso de Componenetes Vue
-* 3. Programación con Javascript ES6
-* 4. Consumo, manejo de datos y estados
-* 5. Estructura de archivos y carpetas
+* Maquetación con HTML y CSS
+* Uso de Componenetes Vue
+* Programación con Javascript ES6
+* Consumo, manejo de datos y estados
+* Estructura de archivos y carpetas
 
 
 ### 1.Maquetación con HTML y CSS: Uso de Bootstrap y etiquetas semánticas
@@ -111,7 +111,7 @@ http://localhost:8080/clasificaciones/asdf <-- Arroja Error de validación y red
 <h1 class="text-center mb-3">Temporada {{ year }}</h1>
 ```
 
-### 4. Consumo, manejo de datos y estados
+### 3. Programación con JavaScript
 
 > Conversión de datos (fechas) mediante métodos JS en src/views/CalendarView.vue (línea 127)
 ```
@@ -122,7 +122,7 @@ compararFechas(actual, proxima) {
     },
 ```
 
-### 4. Programación con JavaScript
+### 4. Consumo, manejo de datos y estados 
 
 > Uso de actions del store 'vuex' en src/App.vue (línea 16 y 23)
 ```
@@ -148,7 +148,7 @@ actions: {
 ```
 
 > Manejo de estados en 'vuex' src/store/index.js (línea 4 y 12)
-```
+```vue
   state: {
     carreras: null,
     standings: null,
