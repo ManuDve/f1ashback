@@ -38,7 +38,7 @@ npm run serve
 
 ### 2. Uso de Componenetes Vue
 > Uso de componentes en src/components y visualizado en src/App.vue (línea 1)
-```
+```html
 <template>
   <NavBar />
   <router-view v-slot="{ Component }">
@@ -51,7 +51,7 @@ npm run serve
 ```
 
 > Comunicación entre componentes en src/views/FormularioView.vue (línea 16, 51, 32)
-```
+```js
 import { mapState } from 'vuex';
 ...
 computed: {
@@ -67,7 +67,7 @@ let html = `
 ```
 
 > Uso de ciclos de vida de un componente para validación de URL en src/Views/ClasificationView.vue (línea 78)
-```
+```js
     beforeMount() {
         let regEx = /[a-zA-Z]/
         /* Valida la url */
@@ -83,7 +83,7 @@ let html = `
 ``` 
 
 > Uso de parámetros props (:year) y rutas por defecto en src/router/index.js (línea 19)
-```
+```js
   {
     path: '/clasificaciones',
     redirect: '/clasificaciones/2023',
@@ -107,14 +107,14 @@ http://localhost:8080/clasificaciones/asdf <-- Arroja Error de validación y red
 
 > Carga y uso de props como parámetros por URL en src/views/ClasificationView.vue (línea 5)
 
-```
+```html
 <h1 class="text-center mb-3">Temporada {{ year }}</h1>
 ```
 
 ### 3. Programación con JavaScript
 
 > Conversión de datos (fechas) mediante métodos JS en src/views/CalendarView.vue (línea 127)
-```
+```js
 compararFechas(actual, proxima) {
       let fechaActual = actual.split("/").join("");
       let fechaProxima = proxima.split("-").join("")
@@ -125,7 +125,7 @@ compararFechas(actual, proxima) {
 ### 4. Consumo, manejo de datos y estados 
 
 > Uso de actions del store 'vuex' en src/App.vue (línea 16 y 23)
-```
+```js
 import { mapActions } from 'vuex'
 ...
 computed: {
@@ -137,7 +137,7 @@ methods: {
 ```
 
 > Comunicación entre componentes usando 'vuex' src/store/index.js (línea 26)
-```
+```js
 actions: {
     async cargarFechas({commit}) {
       let promesa = await fetch('https://ergast.com/api/f1/current.json')
@@ -148,7 +148,7 @@ actions: {
 ```
 
 > Manejo de estados en 'vuex' src/store/index.js (línea 4 y 12)
-```vue
+```js
   state: {
     carreras: null,
     standings: null,
