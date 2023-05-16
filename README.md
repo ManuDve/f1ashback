@@ -20,7 +20,7 @@ npm run serve
 
 
 ### 1.Maquetación con HTML y CSS: Uso de Bootstrap y etiquetas semánticas
-> Ejemplo de HTML Semántico y Bootstrap en src/view/ErrorView.vue (línea 1)
+> Ejemplo de HTML Semántico y Bootstrap en [src/views/ErrorView.vue](src/views/ErrorView.vue) (línea 1)
 ```html
 <template>
     <main class="container mt-5">
@@ -35,7 +35,7 @@ npm run serve
     </main>
 </template>
 ```
-> Responsividad por CSS en src/view/HomeView.vue (línea 15 y 48)
+> Responsividad por CSS en [src/views/HomeView.vue](src/views/HomeView.vue) (línea 15 y 48)
 ```css
  #inicio {
     display: flex;
@@ -61,7 +61,7 @@ npm run serve
 ```
 
 ### 2. Uso de Componenetes Vue
-> Uso de componentes en src/components y visualizado en src/App.vue (línea 1)
+> Uso de componentes en src/components y visualizado en [src/App.vue](src/App.vue) (línea 1)
 ```html
 <template>
   <NavBar />
@@ -74,7 +74,7 @@ npm run serve
 </template>
 ```
 
-> Comunicación entre componentes en src/views/FormularioView.vue (línea 16, 51, 32)
+> Comunicación entre componentes en [src/views/FormularioView.vue](src/views/FormularioView.vue) (línea 16, 51, 32)
 ```js
 import { mapState } from 'vuex';
 ...
@@ -90,7 +90,7 @@ let html = `
                 `
 ```
 
-> Uso de ciclos de vida de un componente para validación de URL en src/Views/ClasificationView.vue (línea 78)
+> Uso de ciclos de vida de un componente para validación de URL en [src/views/ClasificationView.vue](src/views/ClasificationView.vue) (línea 78)
 ```js
     beforeMount() {
         let regEx = /[a-zA-Z]/
@@ -106,7 +106,7 @@ let html = `
     }
 ``` 
 
-> Uso de parámetros props (:year) y rutas por defecto en src/router/index.js (línea 19)
+> Uso de parámetros props (:year) y rutas por defecto en [src/router/index.js](src/router/index.js) (línea 19)
 ```js
   {
     path: '/clasificaciones',
@@ -129,7 +129,7 @@ http://localhost:8080/clasificaciones/1950
 http://localhost:8080/clasificaciones/asdf <-- Arroja Error de validación y redirecciona a /2023
 ```
 
-> Carga y uso de props como parámetros por URL en src/views/ClasificationView.vue (línea 5)
+> Carga y uso de props como parámetros por URL en [src/views/ClasificationView.vue](src/views/ClasificationView.vue) (línea 5)
 
 ```html
 <h1 class="text-center mb-3">Temporada {{ year }}</h1>
@@ -137,7 +137,7 @@ http://localhost:8080/clasificaciones/asdf <-- Arroja Error de validación y red
 
 ### 3. Programación con JavaScript
 
-> Conversión de datos (fechas) mediante métodos JS en src/views/CalendarView.vue (línea 127)
+> Conversión de datos (fechas) mediante métodos JS en [src/views/CalendarView.vue ](src/views/CalendarView.vue) (línea 127)
 ```js
 compararFechas(actual, proxima) {
       let fechaActual = actual.split("/").join("");
@@ -148,7 +148,7 @@ compararFechas(actual, proxima) {
 
 ### 4. Consumo, manejo de datos y estados 
 
-> Uso de actions del store 'vuex' en src/App.vue (línea 16 y 23)
+> Uso de actions del store 'vuex' en [src/App.vue](src/App.vue) (línea 16 y 23)
 ```js
 import { mapActions } from 'vuex'
 ...
@@ -160,7 +160,7 @@ methods: {
   }
 ```
 
-> Comunicación entre componentes usando 'vuex' src/store/index.js (línea 26)
+> Comunicación entre componentes usando 'vuex' [src/store/index.js](src/store/index.js) (línea 26)
 ```js
 actions: {
     async cargarFechas({commit}) {
@@ -171,7 +171,7 @@ actions: {
     },
 ```
 
-> Manejo de estados en 'vuex' src/store/index.js (línea 4 y 12)
+> Manejo de estados en 'vuex' [src/store/index.js](src/store/index.js) (línea 4 y 12)
 ```js
   state: {
     carreras: null,
