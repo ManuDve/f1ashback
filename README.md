@@ -21,7 +21,7 @@ npm run serve
 
 ### 1.Maquetación con HTML y CSS: Uso de Bootstrap y etiquetas semánticas
 > Ejemplo: src/view/ErrorView.vue (línea 1)
-```
+```html
 <template>
     <main class="container mt-5">
         <img src="../assets/sbinalla.jpeg" alt="" class="mb-3">
