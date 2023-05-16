@@ -174,7 +174,7 @@ actions: {
     │   ├── store               # Módulo de Store 'vuex'
     │   ├── views               # Vistas Principales
     │   ├── App.vue             # Archivo base de carga de vistas, componentes y módulos
-    │   └── main.js             # Archivo base de carga de escripts
+    │   └── main.js             # Archivo base de carga de scripts
     └── ...
   
  
