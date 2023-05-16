@@ -41,12 +41,14 @@
 
 img {
   min-height: 18px;
-  width: auto;
+  min-width: 168px;
+  object-fit: scale-down;
   transition: var(--main-transition);
 }
 
+
 img:hover {
-  transform: scale(1.1);
+  animation: zoomInOut 1000ms ;
 }
 
 nav {
@@ -77,5 +79,14 @@ nav {
 
 .navbar-toggler-icon { 
     background-image: url("data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27><path stroke=%27rgba%28213, 0, 0, 1%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/></svg>");
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

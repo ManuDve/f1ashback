@@ -12,13 +12,17 @@
             :data-bs-target="'#n' + carrera.round" aria-expanded="false" :aria-controls="'n' + carrera.round">
             <div class="dflex"> 
               <div class="nombre-carrera">{{ carrera.raceName }} <span v-if="carreraSiguiente && carreraSiguiente.round == carrera.round" class="alerta">NEXT</span></div>
-              <div>{{ cambiarFecha(carrera.date) }}</div>
+              <div>{{ fechaNominal(carrera.date) }}</div>
             </div>
           </button>
         </h2>
         <div :id="'n' + carrera.round" class="accordion-collapse collapse" data-bs-parent="#accordion">
           <div class="accordion-body">
-
+            <span class="pais">
+              <img class="flag" :src="mostrarPais(carrera.Circuit.Location.country)"> 
+              {{ carrera.Circuit.Location.locality }}, 
+              {{ carrera.Circuit.Location.country }} 
+            </span>
             <div class="accordion-data">
               <div>Primera Práctica </div>
               <div class="hora">
@@ -76,6 +80,7 @@
 <script>
 
 import { mapState } from 'vuex'
+import country from "all-country-data";
 
 export default {
   data() {
@@ -86,6 +91,20 @@ export default {
   methods: {
     cambiarFecha(fecha) {
       return fecha.split('-').reverse().join("/")
+    },
+    mostrarPais(nombre) {
+      if (nombre == 'USA') {
+        return country.searchFlag('United States')[0].flag
+      } else if (nombre == 'UAE') {
+        return country.searchFlag('Arab Emirates')[0].flag
+      } else if(nombre == 'UK') {
+        return country.searchFlag('United Kingdom')[0].flag
+      } else if (country.searchFlag(nombre)) {
+        return country.searchFlag(nombre)[0].flag
+      } else {
+        return ''
+      }
+      
     },
     fechaNominal(fecha) {
       let arr = fecha.split('-').reverse()
@@ -244,4 +263,17 @@ main {
 .gp {
   color: var(--secondary-color);
 }
+
+/*  Banderas */
+.pais {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .5em;
+  margin-bottom: 1em;
+}
+.flag {
+  max-width: 20px;
+}
+
 </style>
