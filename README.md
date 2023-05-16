@@ -164,5 +164,17 @@ actions: {
   
   ### 5. Estructura de archivos y carpetas
   
+  ├── ...
+    ├── public                  # HTML base y favicon
+    ├── src                     # Archivos Principales
+    │   ├── assets              # Documentos multimedia y CSS base
+    │   ├── components          # Componentes Vue reutilizables
+    │   ├── router              # Módulo de Router
+    │   ├── store               # Módulo de Store 'vuex'
+    │   ├── views               # Vistas Principales
+    │   ├── App.vue             # Archivo base de carga de vistas, componentes y módulos
+    │   └── main.js             # Archivo base de carga de escripts
+    └── ...
+  
  
 
