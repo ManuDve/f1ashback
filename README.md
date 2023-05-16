@@ -164,7 +164,8 @@ actions: {
   
   ### 5. Estructura de archivos y carpetas
   
-  ├── ...
+    .
+    ├── ...
     ├── public                  # HTML base y favicon
     ├── src                     # Archivos Principales
     │   ├── assets              # Documentos multimedia y CSS base
