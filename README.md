@@ -1,5 +1,7 @@
 # f1ashback
 
+Fechas para carreras de la Fórmula 1 y datos históricos
+
 ## Instalación del proyecto
 ```
 npm install
